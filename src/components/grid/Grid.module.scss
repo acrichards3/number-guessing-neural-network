@@ -1,0 +1,16 @@
+.grid {
+  display: flex;
+  align-items: center;
+  border: 2px solid #4b4b4b;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border: solid 1px #4b4b4b;
+
+  &.filled {
+    background-color: white;
+  }
+}
