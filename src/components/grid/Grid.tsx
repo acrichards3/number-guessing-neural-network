@@ -1,5 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
+import Header from './header/Header';
+import ButtonArea from './buttonArea/ButtonArea';
 import styles from './Grid.module.scss';
 
 interface GridProps {
@@ -8,13 +10,15 @@ interface GridProps {
 }
 
 export default function Grid(props: GridProps) {
-  const [isMouseDown, setIsMouseDown] = React.useState(false);
+  const rowArr: number[] = new Array(props.rows).fill(0);
+  const InitialGrid: number[][] = rowArr.map(() =>
+    new Array(props.columns).fill(0)
+  );
 
-  const [grid, setGrid] = React.useState(() => {
-    return Array.from({ length: props.rows }, () =>
-      new Array(props.columns).fill(0)
-    );
-  });
+  console.log(InitialGrid, 'initial grid');
+
+  const [isMouseDown, setIsMouseDown] = React.useState(false);
+  const [grid, setGrid] = React.useState<number[][]>(InitialGrid);
 
   const handleCellClick = (x: number, y: number) => {
     const newGrid = [...grid];
@@ -34,6 +38,7 @@ export default function Grid(props: GridProps) {
 
   return (
     <>
+      <Header />
       <div className={styles.grid}>
         {grid.map((row, x) => (
           <div key={x} className={styles.row}>
@@ -52,21 +57,12 @@ export default function Grid(props: GridProps) {
           </div>
         ))}
       </div>
-      <div className={styles.buttonArea}>
-        <button
-          onClick={() =>
-            setGrid(() => {
-              return Array.from({ length: props.rows }, () =>
-                new Array(props.columns).fill(0)
-              );
-            })
-          }
-          className={styles.reset}
-        >
-          Reset Grid
-        </button>
-        <button className={styles.submit}>Submit</button>
-      </div>
+      <ButtonArea
+        rows={props.rows}
+        columns={props.columns}
+        setGrid={setGrid}
+        grid={grid}
+      />
     </>
   );
 }

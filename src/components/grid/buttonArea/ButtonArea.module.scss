@@ -1,0 +1,37 @@
+.buttonArea {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.reset {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #972a2a;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 200ms;
+
+  &:hover {
+    background-color: #b72a2a;
+    letter-spacing: 1px;
+  }
+}
+
+.submit {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #2a9754;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 200ms;
+
+  &:hover {
+    background-color: #58b665;
+    letter-spacing: 1px;
+  }
+}
