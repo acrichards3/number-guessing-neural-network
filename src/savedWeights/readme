@@ -1,0 +1,11 @@
+# The updatedWeights.json file below is the file that I use internally to keep the most up to date weights and biases that is used by the neural network.
+
+# During backpropagation, the adjusted values are overwritten onto this file so that the values can then be used again in the future even if I refresh.
+
+# This unfortunately means that only I will actually be able to train the network and will have to redeploy the app each time I want the end user to be able to use the most up-to-date weights and biases.
+
+# The reason why I'm doing this is because I honestly don't really care enough to set up a database to be able to store the values so this is good enough for me.
+
+# If you clone this repo and want to further train the network yourself, you'll have to uncomment out the backprop steps so that the updatedWeights.json file can be updated and the network can get better over time.
+
+# Additionally, the initialize.js file essentially "Resets" the network by randomizing all of the weights and biases. This should only be done a single time (I've already done it) just to initialize random weights and biases for the network

@@ -6,6 +6,7 @@ interface ButtonAreaProps {
   columns: number;
   grid: number[][];
   setGrid: (grid: number[][]) => void;
+  setSubmittedGrid: (grid: number[][]) => void;
 }
 
 export default function ButtonArea(props: ButtonAreaProps) {
@@ -14,8 +15,9 @@ export default function ButtonArea(props: ButtonAreaProps) {
   );
 
   const handleSubmit = () => {
-    console.log(props.grid, 'SUBMITTED RESULT');
+    props.setSubmittedGrid(props.grid);
   };
+
   return (
     <div className={styles.buttonArea}>
       <button onClick={() => props.setGrid(newGrid)} className={styles.reset}>
