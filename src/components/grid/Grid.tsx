@@ -7,6 +7,8 @@ import styles from './Grid.module.scss';
 interface GridProps {
   rows: number;
   columns: number;
+  submittedGrid: number[][] | undefined;
+  setSubmittedGrid: (grid: number[][]) => void;
 }
 
 export default function Grid(props: GridProps) {
@@ -14,8 +16,6 @@ export default function Grid(props: GridProps) {
   const InitialGrid: number[][] = rowArr.map(() =>
     new Array(props.columns).fill(0)
   );
-
-  console.log(InitialGrid, 'initial grid');
 
   const [isMouseDown, setIsMouseDown] = React.useState(false);
   const [grid, setGrid] = React.useState<number[][]>(InitialGrid);
@@ -33,8 +33,6 @@ export default function Grid(props: GridProps) {
       setGrid(newGrid);
     }
   };
-
-  console.log(grid);
 
   return (
     <>
@@ -60,8 +58,9 @@ export default function Grid(props: GridProps) {
       <ButtonArea
         rows={props.rows}
         columns={props.columns}
-        setGrid={setGrid}
         grid={grid}
+        setGrid={setGrid}
+        setSubmittedGrid={props.setSubmittedGrid}
       />
     </>
   );
