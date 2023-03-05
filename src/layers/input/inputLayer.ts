@@ -1,6 +1,4 @@
-export const inputLayer = (grid: number[][] | undefined) => {
-  if (!grid) return;
-
+export const inputLayer = (grid: number[][]): number[] => {
   const input = grid.flat();
   return input;
 };

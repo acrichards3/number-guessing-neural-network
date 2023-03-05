@@ -11,7 +11,7 @@ The front end of this app was built using React and TypeScript. The general step
 - Two arrays filled with zeros each of length 28 were mapped over to generate rows and columns. Using flexbox and other SCSS styling, I was able to create a grid. I have this initial grid stored as state using react's React.useState() hook.
 - Using react's React.useState() hook, I am able to track if the user is clicking down or not, this state is used in conjunction with the x and y values of the matrix (grid) to regenerate the entire matrix using a setGrid() function from the useState hook. This updates the entire state therefore essentailly generating a new grid with values of 1 where the user "drew on"/
 - I then created a reset button which when clicked will set the grid back to its initial state as a 28x28 matrix of all zeros.
-- I also created a submit button that when clicked will run the matrix through the network.
+- I also created a submit button that when clicked will run the matrix values through the network.
 - Depending on the network's "choice" an answer will be displayed to the user what the highest probability answer is based on the input.
 - Below this are two buttons asking if the network chose the number correctly, if the user selects no, the user is prompted to enter the correct answer which then gets run backwards through the network to adjust the weights and biases.
 
@@ -26,4 +26,4 @@ This section will discuss in detail how we go from the grid all the way to the a
 
 ### Input Layer
 
-The input layer simply takes in the 28x28 user submitted matrix and is transformed into a single array or column consisting of all 784 input values. There are the neurons that make up the input layer.
+The input layer simply takes in the 28x28 user submitted grid and is transformed into a single array/column consisting of all 784 input values. These are the neurons that make up the input layer.
