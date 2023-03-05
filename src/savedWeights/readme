@@ -1,6 +1,6 @@
 # The updatedWeights.json file below is the file that I use internally to keep the most up to date weights and biases that is used by the neural network.
 
-# During backpropagation, the adjusted values are overwritten onto this file so that the values can then be used again in the future even if I refresh.
+# During backpropagation, the adjusted values are overwritten onto this file so that the values can then be used again in the future even if I refresh. If you look at older commits from this repo, you should see the changes to these weights and biases over time.
 
 # This unfortunately means that only I will actually be able to train the network and will have to redeploy the app each time I want the end user to be able to use the most up-to-date weights and biases.
 

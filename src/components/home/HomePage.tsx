@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '../grid/Grid';
-import { inputLayer } from '~/layers/input/inputLayer';
-import { prediction } from '~/layers/prediction';
+import { runPrediction } from '~/layers/runPrediction';
 import styles from './HomePage.module.scss';
 
 export default function HomePage() {
@@ -9,7 +8,8 @@ export default function HomePage() {
     number[][] | undefined
   >(undefined);
 
-  prediction(submittedGrid);
+  runPrediction(submittedGrid);
+
   return (
     <div className={styles.container}>
       <Grid
