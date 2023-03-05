@@ -8,7 +8,7 @@ interface GridProps {
   rows: number;
   columns: number;
   submittedGrid: number[][] | undefined;
-  setSubmittedGrid: (grid: number[][]) => void;
+  setSubmittedGrid: (grid: number[][] | undefined) => void;
 }
 
 export default function Grid(props: GridProps) {
@@ -35,7 +35,7 @@ export default function Grid(props: GridProps) {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <Header />
       <div className={styles.grid}>
         {grid.map((row, x) => (
@@ -62,6 +62,6 @@ export default function Grid(props: GridProps) {
         setGrid={setGrid}
         setSubmittedGrid={props.setSubmittedGrid}
       />
-    </>
+    </div>
   );
 }

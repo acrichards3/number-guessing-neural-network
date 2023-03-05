@@ -31,8 +31,18 @@ export const outputLayer = (input: Array<number>) => {
   }
 
   const reluOutput = activationInputs.map((input) => relu(input));
+  const softmaxOutput = softmax(reluOutput);
 
-  console.log('softmax', softmax(reluOutput));
+  console.log(softmaxOutput);
+  const makePrediction = () => {
+    const prediction = softmaxOutput.indexOf(Math.max(...softmaxOutput));
+    if (possibleOutputs[prediction] === undefined) {
+      throw new Error(
+        'Fix this terrible code, you idiot. The prediction index doesnt exist within the possibleOutputs array.'
+      );
+    }
+    return possibleOutputs[prediction];
+  };
 
-  return softmax(reluOutput);
+  return makePrediction();
 };
