@@ -18,21 +18,21 @@ const outputLayerSize = 11;
 
 // Randomly initialize weights and biases
 const hiddenLayer1Weights = [...Array(hiddenLayer1Size)].map(() =>
-  [...Array(inputLayerSize)].map(() => Math.random())
+  [...Array(inputLayerSize)].map(() => Math.random() * 2 - 1)
 );
 const hiddenLayer1Biases = [...Array(hiddenLayer1Size)].map(() =>
   Math.random()
 );
 
 const hiddenLayer2Weights = [...Array(hiddenLayer2Size)].map(() =>
-  [...Array(hiddenLayer1Size)].map(() => Math.random())
+  [...Array(hiddenLayer1Size)].map(() => Math.random() * 2 - 1)
 );
 const hiddenLayer2Biases = [...Array(hiddenLayer2Size)].map(() =>
   Math.random()
 );
 
 const outputLayerWeights = [...Array(outputLayerSize)].map(() =>
-  [...Array(hiddenLayer2Size)].map(() => Math.random())
+  [...Array(hiddenLayer2Size)].map(() => Math.random() * 2 - 1)
 );
 const outputLayerBiases = [...Array(outputLayerSize)].map(() => Math.random());
 

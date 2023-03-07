@@ -1,4 +1,5 @@
 import DATA from '../../savedWeights/updatedWeights.json';
+import { SIGMOID } from '~/functions/sigmoid';
 import { relu } from '~/functions/relu';
 
 const SIZE = 16;
@@ -16,7 +17,7 @@ export const hiddenLayerOne = (input: Array<number>) => {
     );
   }
 
-  for (let i = 0; i < SIZE; i++) {
+  for (let i = 0; i < biases.length; i++) {
     const weightedSum = (weights[i] ?? []).reduce((acc, curr) => acc + curr, 0);
     if (weightedSum !== undefined) {
       weightedSumArr.push(weightedSum);

@@ -1,4 +1,5 @@
 import DATA from '../../savedWeights/updatedWeights.json';
+import { SIGMOID } from '~/functions/sigmoid';
 import { relu } from '~/functions/relu';
 
 const SIZE = 16;

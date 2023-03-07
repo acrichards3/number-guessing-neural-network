@@ -1,8 +1,9 @@
 import DATA from '../../savedWeights/updatedWeights.json';
 import { relu } from '~/functions/relu';
+import { SIGMOID } from '~/functions/sigmoid';
 import { softmax } from '~/functions/softmax';
 
-const possibleOutputs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, NaN];
+const possibleOutputs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'Not a valid answer.'];
 
 export const outputLayer = (input: Array<number>) => {
   const activationInputs: Array<number> = [];
@@ -31,18 +32,6 @@ export const outputLayer = (input: Array<number>) => {
   }
 
   const reluOutput = activationInputs.map((input) => relu(input));
-  const softmaxOutput = softmax(reluOutput);
 
-  console.log(softmaxOutput);
-  const makePrediction = () => {
-    const prediction = softmaxOutput.indexOf(Math.max(...softmaxOutput));
-    if (possibleOutputs[prediction] === undefined) {
-      throw new Error(
-        'Fix this terrible code, you idiot. The prediction index doesnt exist within the possibleOutputs array.'
-      );
-    }
-    return possibleOutputs[prediction];
-  };
-
-  return makePrediction();
+  return reluOutput;
 };
