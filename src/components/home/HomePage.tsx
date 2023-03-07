@@ -8,6 +8,9 @@ export default function HomePage() {
   const [submittedGrid, setSubmittedGrid] = React.useState<
     number[][] | undefined
   >(undefined);
+  const [softmaxOutput, setSoftmaxOutput] = React.useState<
+    Array<number> | undefined
+  >(undefined);
 
   runPrediction(submittedGrid);
 

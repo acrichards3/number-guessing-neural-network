@@ -1,0 +1,37 @@
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.incorrect {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #796969;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 200ms;
+
+  &:hover {
+    background-color: #b72a2a;
+    letter-spacing: 1px;
+  }
+}
+
+.correct {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #688172;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 200ms;
+
+  &:hover {
+    background-color: #58b665;
+    letter-spacing: 1px;
+  }
+}
