@@ -1,6 +1,8 @@
-export const softmax = (logits: Array<number>): Array<number> => {
-  const maxLogit = Math.max(...logits);
-  const exp = logits.map((val) => Math.exp(val - maxLogit));
-  const sumExp = exp.reduce((acc, curr) => acc + curr);
-  return exp.map((val) => val / sumExp);
+export const softmax = (input: Array<number>): Array<number> => {
+  const max = Math.max(...input);
+  const result = input.map((number) => {
+    return Math.exp(number - max);
+  });
+  const sum = result.reduce((acc, curr) => acc + curr);
+  return result.map((number) => number / sum);
 };

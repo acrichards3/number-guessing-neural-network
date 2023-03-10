@@ -1,34 +1,45 @@
 import DATA from '../../savedWeights/updatedWeights.json';
-import { SIGMOID } from '~/functions/sigmoid';
 import { relu } from '~/functions/relu';
 
-const SIZE = 16;
-
 export const hiddenLayerOne = (input: Array<number>) => {
-  const activationInputs: Array<number> = [];
-  const weightedSumArr: Array<number> = [];
-  const inputSum = input.reduce((sum, curr) => sum + curr, 0);
   const weights = DATA.hiddenLayer1Weights;
   const biases = DATA.hiddenLayer1Biases;
+  const neurons = 16;
 
-  if (weights.length !== SIZE || biases.length !== SIZE) {
+  if (weights[0]?.length !== input.length) {
     throw new Error(
-      'Weights and biases are not the same length. If you are seeing this, something went terribly wrong and it might be time to give up on life as you know it'
+      `Weights and input are not the same length! Weights: ${weights[0]?.length}, Input: ${input.length}`
     );
   }
 
-  for (let i = 0; i < biases.length; i++) {
-    const weightedSum = (weights[i] ?? []).reduce((acc, curr) => acc + curr, 0);
-    if (weightedSum !== undefined) {
-      weightedSumArr.push(weightedSum);
+  if (neurons !== biases.length) {
+    throw new Error(
+      `Neurons and biases are not the same length! Neurons: ${neurons}, Biases: ${biases.length}`
+    );
+  }
+
+  const weightedSum = weights.map((row) =>
+    row.reduce((acc, curr, index) => {
+      const currentInput = input[index];
+      if (currentInput === undefined) {
+        throw new Error(
+          `Input value is undefined! Input: ${input}, Index: ${index}`
+        );
+      }
+      return acc + curr * currentInput;
+    }, 0)
+  );
+
+  const activations = weightedSum.map((sum, index) => {
+    const currentBias = biases[index];
+    if (currentBias === undefined) {
+      throw new Error(
+        `Bias value is undefined! Biases: ${biases}, Index: ${index}`
+      );
     }
-  }
+    return relu(sum + currentBias);
+  });
 
-  for (let i = 0; i < weightedSumArr.length; i++) {
-    const activationInput =
-      inputSum * (weightedSumArr[i] ?? 0) + (biases[i] ?? 0);
-    activationInputs.push(activationInput);
-  }
-
-  return activationInputs.map((input) => relu(input));
+  console.log('Hidden Layer One Activations: ', activations);
+  return activations;
 };

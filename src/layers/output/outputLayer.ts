@@ -3,35 +3,47 @@ import { relu } from '~/functions/relu';
 import { SIGMOID } from '~/functions/sigmoid';
 import { softmax } from '~/functions/softmax';
 
-const possibleOutputs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'Not a valid answer.'];
-
 export const outputLayer = (input: Array<number>) => {
-  const activationInputs: Array<number> = [];
-  const inputSum = input.reduce((sum, curr) => sum + curr, 0);
-  const weightedSumArr: Array<number> = [];
+  const possibleOutputs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'Not a valid answer.'];
   const weights = DATA.outputLayerWeights;
   const biases = DATA.outputLayerBiases;
+  const neurons = possibleOutputs.length;
 
-  if (weights.length !== biases.length) {
+  if (weights[0]?.length !== input.length) {
     throw new Error(
-      'WHAT IS THAT PRIVATE PYLE?. If you are seeing this, you resign now because weights and biases are not the same length'
+      `Weights and input are not the same length! Weights: ${weights[0]?.length}, Input: ${input.length}`
     );
   }
 
-  for (let i = 0; i < possibleOutputs.length; i++) {
-    const weightedSum = (weights[i] ?? []).reduce((acc, curr) => acc + curr, 0);
-    if (weightedSum !== undefined) {
-      weightedSumArr.push(weightedSum);
+  if (neurons !== biases.length) {
+    throw new Error(
+      `Neurons and biases are not the same length! Neurons: ${neurons}, Biases: ${biases.length}`
+    );
+  }
+
+  const weightedSum = weights.map((row) =>
+    row.reduce((acc, curr, index) => {
+      const currentInput = input[index];
+      if (currentInput === undefined) {
+        throw new Error(
+          `Input value is undefined! Input: ${input}, Index: ${index}`
+        );
+      }
+      return acc + curr * currentInput;
+    }, 0)
+  );
+
+  const activations = weightedSum.map((sum, index) => {
+    const currentBias = biases[index];
+    if (currentBias === undefined) {
+      throw new Error(
+        `Bias value is undefined! Biases: ${biases}, Index: ${index}`
+      );
     }
-  }
+    return sum + currentBias;
+  });
 
-  for (let i = 0; i < weightedSumArr.length; i++) {
-    const activationInput =
-      inputSum * (weightedSumArr[i] ?? 0) + (biases[i] ?? 0);
-    activationInputs.push(activationInput);
-  }
-
-  const reluOutput = activationInputs.map((input) => relu(input));
-
-  return reluOutput;
+  const result = softmax(activations);
+  console.log('Output Layer Activations: ', result);
+  return result;
 };
