@@ -32,7 +32,7 @@ export default function Prediction(props: PredictionProps) {
     </div>
   );
 
-  console.log(actualAnswer);
+  console.log(actualAnswer, 'actual Answer');
 
   return (
     <div className={styles.container}>

@@ -14,16 +14,10 @@ export const runPrediction = (input: Array<Array<number>> | undefined) => {
   const hiddenLayerTwoOutput = hiddenLayerTwo(hiddenLayerOneOutput);
   const outputLayerOutput = outputLayer(hiddenLayerTwoOutput);
 
-  // console.log(input, 'input');
-  // console.log('inputLayerOutput', inputLayerOutput);
-  // console.log('hiddenLayerOneOutput', hiddenLayerOneOutput);
-  // console.log('hiddenLayerTwoOutput', hiddenLayerTwoOutput);
-  // console.log('outputLayerOutput', outputLayerOutput);
-
-  const softmaxOutput = softmax(outputLayerOutput);
-
   const makePrediction = () => {
-    const prediction = softmaxOutput.indexOf(Math.max(...softmaxOutput));
+    const prediction = outputLayerOutput.indexOf(
+      Math.max(...outputLayerOutput)
+    );
     if (possibleOutputs[prediction] === undefined) {
       throw new Error(
         'Fix this terrible code, you idiot. The prediction index doesnt exist within the possibleOutputs array.'
@@ -32,5 +26,6 @@ export const runPrediction = (input: Array<Array<number>> | undefined) => {
     return possibleOutputs[prediction];
   };
 
-  return [softmaxOutput, makePrediction()];
+  console.log(outputLayerOutput, makePrediction(), 'RETURN VALUE');
+  return [outputLayerOutput, makePrediction()];
 };
