@@ -14,7 +14,7 @@ const columns = 28;
 const inputLayerSize = rows * columns;
 const hiddenLayer1Size = 16;
 const hiddenLayer2Size = 16;
-const outputLayerSize = 11;
+const outputLayerSize = 10;
 
 // Randomly initialize weights and biases
 const hiddenLayer1Weights = [...Array(hiddenLayer1Size)].map(() =>
