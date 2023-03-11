@@ -15,10 +15,10 @@ const updateJsonRouter = router({
           .array(z.array(z.number()).length(16))
           .length(784),
         hiddenLayer2Weights: z.array(z.array(z.number()).length(16)).length(16),
-        outputLayerWeights: z.array(z.array(z.number()).length(16)).length(11),
+        outputLayerWeights: z.array(z.array(z.number()).length(16)).length(10),
         hiddenLayer1Biases: z.array(z.number()).length(16),
         hiddenLayer2Biases: z.array(z.number()).length(16),
-        outputLayerBiases: z.array(z.number()).length(11),
+        outputLayerBiases: z.array(z.number()).length(10),
       })
     )
     .mutation((req) => {

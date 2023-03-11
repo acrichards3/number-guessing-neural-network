@@ -7,6 +7,7 @@ interface ButtonAreaProps {
   grid: number[][];
   setGrid: (grid: number[][]) => void;
   setSubmittedGrid: (grid: number[][] | undefined) => void;
+  setDesiredResult: (desiredResult: number[] | undefined) => void;
 }
 
 export default function ButtonArea(props: ButtonAreaProps) {
@@ -17,6 +18,7 @@ export default function ButtonArea(props: ButtonAreaProps) {
   const handleReset = () => {
     props.setGrid(newGrid);
     props.setSubmittedGrid(undefined);
+    props.setDesiredResult(undefined);
   };
 
   const handleSubmit = () => {

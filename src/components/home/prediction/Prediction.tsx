@@ -2,44 +2,58 @@ import React from 'react';
 import { runPrediction } from '~/layers/runPrediction';
 import Form from './form/Form';
 import PredictionButtons from './buttons/PredictionButtons';
+import { runTraining } from '~/backProp/runTraining';
 import styles from './Prediction.module.scss';
 
 interface PredictionProps {
   submittedGrid: number[][];
+  setDesiredResult: (desiredResult: number[]) => void;
 }
 
 export default function Prediction(props: PredictionProps) {
   const prediction = runPrediction(props.submittedGrid);
-  const softmaxOutput = prediction !== undefined ? prediction[0] : null;
-  const [actualAnswer, setActualAnswer] = React.useState<number[] | undefined>(
-    undefined
-  );
   const [displayButtons, setDisplayButtons] = React.useState(true);
   const [isCorrect, setIsCorrect] = React.useState<boolean | undefined>(
     undefined
   );
   const [submitted, setSubmitted] = React.useState(false);
 
-  const correct = <p className={styles.thanks}>Thanks for your input!</p>;
+  const predictedAnswer = (
+    softmaxRes: number[] | undefined
+  ): number | undefined => {
+    if (softmaxRes === undefined) return undefined;
 
+    const ans = softmaxRes.indexOf(Math.max(...softmaxRes));
+    if (softmaxRes[ans] === undefined) {
+      throw new Error(
+        'Fix this terrible code, you idiot. The prediction index doesnt exist within the possibleOutputs array.'
+      );
+    }
+    return ans;
+  };
+
+  const correct = <p className={styles.thanks}>Thanks for your input!</p>;
   const incorrect = (
     <div>
       {!submitted ? (
-        <Form setActualAnswer={setActualAnswer} setSubmitted={setSubmitted} />
+        <Form
+          setDesiredResult={props.setDesiredResult}
+          setSubmitted={setSubmitted}
+        />
       ) : (
         correct
       )}
     </div>
   );
 
-  console.log(actualAnswer, 'actual Answer');
-
   return (
     <div className={styles.container}>
       <div className={styles.predictionContainer}>
         <p className={styles.text}>Predicted Number:</p>
         <p className={styles.prediction}>
-          {prediction !== undefined ? prediction[1] : null}
+          {predictedAnswer(prediction) !== undefined
+            ? predictedAnswer(prediction)
+            : '...'}
         </p>
       </div>
       {displayButtons ? (

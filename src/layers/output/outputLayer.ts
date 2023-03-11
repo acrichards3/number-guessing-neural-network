@@ -4,7 +4,7 @@ import { SIGMOID } from '~/functions/sigmoid';
 import { softmax } from '~/functions/softmax';
 
 export const outputLayer = (input: Array<number>) => {
-  const possibleOutputs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'Not a valid answer.'];
+  const possibleOutputs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const weights = DATA.outputLayerWeights;
   const biases = DATA.outputLayerBiases;
   const neurons = possibleOutputs.length;
@@ -43,7 +43,5 @@ export const outputLayer = (input: Array<number>) => {
     return sum + currentBias;
   });
 
-  const result = softmax(activations);
-  console.log('Output Layer Activations: ', result);
-  return result;
+  return softmax(activations);
 };
