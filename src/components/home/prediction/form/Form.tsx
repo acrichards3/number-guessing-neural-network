@@ -3,14 +3,14 @@ import styles from './Form.module.scss';
 
 interface FormProps {
   setSubmitted: (submitted: boolean) => void;
-  setActualAnswer: (actualAnswer: number[]) => void;
+  setDesiredResult: (actualAnswer: number[]) => void;
 }
 
 export default function Form(props: FormProps) {
   const possibleAnswers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const handleSubmit = (answer: number) => {
-    function createActualAnswerArray(size: number, index: number): number[] {
+    function createDesiredAnswerArray(size: number, index: number): number[] {
       if (index < 0 || index >= size) {
         throw new Error('Index out of range');
       }
@@ -21,8 +21,8 @@ export default function Form(props: FormProps) {
       return arr;
     }
 
-    props.setActualAnswer(
-      createActualAnswerArray(possibleAnswers.length, answer)
+    props.setDesiredResult(
+      createDesiredAnswerArray(possibleAnswers.length, answer)
     );
     props.setSubmitted(true);
   };

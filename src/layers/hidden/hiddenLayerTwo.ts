@@ -41,6 +41,5 @@ export const hiddenLayerTwo = (input: Array<number>) => {
     return relu(sum + currentBias);
   });
 
-  console.log('Hidden Layer Two Activations: ', activations);
   return activations;
 };

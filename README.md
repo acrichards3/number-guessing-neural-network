@@ -1,5 +1,7 @@
 # Number Guessing Neural Network Overview
 
+If you're reading this right now please know that the details below are incorrect and I have updated the code since writing this. This read me will be updated soon.
+
 This is a neural network built completely from the ground up only using React and Typescript. That means no libraries such as tensorflow and no data sets to go off of all of this was hand trained and written by me.
 
 This neural network starts with a 28x28 grid of squares (a matrix) that are all initialized to 0. A user can then draw on this grid such that anywhere where their cursor goes, the value of 0 is turned into a 1. Dark squares are 0's and light squares are 1's. This matrix is then transformed into a single 784 neuron column (28 \* 28 squares) with the relevant 0's and 1's which then go through a series of layers to predict the final output.

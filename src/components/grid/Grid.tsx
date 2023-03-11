@@ -9,6 +9,7 @@ interface GridProps {
   columns: number;
   submittedGrid: number[][] | undefined;
   setSubmittedGrid: (grid: number[][] | undefined) => void;
+  setDesiredResult: (desiredResult: number[] | undefined) => void;
 }
 
 export default function Grid(props: GridProps) {
@@ -61,6 +62,7 @@ export default function Grid(props: GridProps) {
         grid={grid}
         setGrid={setGrid}
         setSubmittedGrid={props.setSubmittedGrid}
+        setDesiredResult={props.setDesiredResult}
       />
     </div>
   );

@@ -8,11 +8,11 @@ export default function HomePage() {
   const [submittedGrid, setSubmittedGrid] = React.useState<
     number[][] | undefined
   >(undefined);
-  const [softmaxOutput, setSoftmaxOutput] = React.useState<
-    Array<number> | undefined
+  const [desiredResult, setDesiredResult] = React.useState<
+    number[] | undefined
   >(undefined);
 
-  runPrediction(submittedGrid);
+  runPrediction(submittedGrid, desiredResult);
 
   const beforeSubmit = (
     <div className={styles.before}>
@@ -28,11 +28,15 @@ export default function HomePage() {
           columns={28}
           submittedGrid={submittedGrid}
           setSubmittedGrid={setSubmittedGrid}
+          setDesiredResult={setDesiredResult}
         />
       </div>
       <div className={styles.half}>
         {runPrediction(submittedGrid) !== undefined ? (
-          <Prediction submittedGrid={submittedGrid ?? []} />
+          <Prediction
+            setDesiredResult={setDesiredResult}
+            submittedGrid={submittedGrid ?? []}
+          />
         ) : (
           beforeSubmit
         )}

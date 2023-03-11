@@ -40,6 +40,5 @@ export const hiddenLayerOne = (input: Array<number>) => {
     return relu(sum + currentBias);
   });
 
-  console.log('Hidden Layer One Activations: ', activations);
   return activations;
 };
