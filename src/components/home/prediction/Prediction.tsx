@@ -2,7 +2,6 @@ import React from 'react';
 import { runPrediction } from '~/layers/runPrediction';
 import Form from './form/Form';
 import PredictionButtons from './buttons/PredictionButtons';
-import { runTraining } from '~/backProp/runTraining';
 import styles from './Prediction.module.scss';
 
 interface PredictionProps {
