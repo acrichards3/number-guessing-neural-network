@@ -1,13 +1,8 @@
-import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
+import { createTRPCRouter, publicProcedure } from '../../../server/api/trpc';
 import fs from 'fs/promises';
 
-const t = initTRPC.create();
-
-const router = t.router;
-const publicProcedure = t.procedure;
-
-const updateJsonRouter = router({
+export const updateJsonRouter = createTRPCRouter({
   updateJson: publicProcedure
     .input(
       z.object({
@@ -43,5 +38,3 @@ const updateJsonRouter = router({
       console.log('Successfully updated JSON file!');
     }),
 });
-
-export default updateJsonRouter;
