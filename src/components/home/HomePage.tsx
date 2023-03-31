@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '../grid/Grid';
-import { runPrediction } from '~/layers/runPrediction';
 import Prediction from './prediction/Prediction';
 import styles from './HomePage.module.scss';
 
@@ -11,8 +10,6 @@ export default function HomePage() {
   const [desiredResult, setDesiredResult] = React.useState<
     number[] | undefined
   >(undefined);
-
-  runPrediction(submittedGrid, desiredResult);
 
   const beforeSubmit = (
     <div className={styles.before}>
@@ -31,16 +28,7 @@ export default function HomePage() {
           setDesiredResult={setDesiredResult}
         />
       </div>
-      <div className={styles.half}>
-        {runPrediction(submittedGrid) !== undefined ? (
-          <Prediction
-            setDesiredResult={setDesiredResult}
-            submittedGrid={submittedGrid ?? []}
-          />
-        ) : (
-          beforeSubmit
-        )}
-      </div>
+      <div className={styles.half}>{beforeSubmit}</div>
     </div>
   );
 }
