@@ -1,5 +1,4 @@
 import React from 'react';
-import { runPrediction } from '~/layers/runPrediction';
 import Form from './form/Form';
 import PredictionButtons from './buttons/PredictionButtons';
 import styles from './Prediction.module.scss';
@@ -10,7 +9,6 @@ interface PredictionProps {
 }
 
 export default function Prediction(props: PredictionProps) {
-  const prediction = runPrediction(props.submittedGrid);
   const [displayButtons, setDisplayButtons] = React.useState(true);
   const [isCorrect, setIsCorrect] = React.useState<boolean | undefined>(
     undefined
